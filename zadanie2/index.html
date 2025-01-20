@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html><head>
-</head><body>
-<!--File: form_js.html-->
-<h1> Dog shelter </h1>
-<form action="http://localhost:8080/form.js" method="post">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dog Shelter Form</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Dog Shelter</h1>
+  <form action="/form.js" method="post">
     <label for="dname">Dog name:</label><br>
     <input type="text" id="dname" name="dname" placeholder="Odi" required><br>
+    
     <label for="birth_year">Year of birth:</label><br>
     <input type="number" id="birth_year" name="birth_year" placeholder="2020" required><br><br>
-    <label for="gender">Gender</label><br><br>
-    <input type="radio" id="gender" name="gender" value="M" checked>Male<br>
-    <input type="radio" id="gender" name="gender" value="F">Female<br>
+    
+    <label>Gender:</label><br><br>
+    <input type="radio" id="genderM" name="gender" value="M" checked>
+    <label for="genderM">Male</label><br>
+    <input type="radio" id="genderF" name="gender" value="F">
+    <label for="genderF">Female</label><br><br>
+    
     <input type="submit" value="Submit">
   </form>
-</body></html>
+  <br>
+  <button onclick="window.location.href='/form.js'">View All Dogs</button>
+</body>
+</html>
