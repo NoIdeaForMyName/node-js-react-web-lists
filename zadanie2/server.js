@@ -61,6 +61,11 @@ app.post('/add-dog', async (req, res) => {
         return;
     }
 
+    else if (isNaN(birth_year) || !['M', 'F'].includes(gender)) {
+        res.status(400).send("Wrong values in fields");
+        return;
+    }
+
     const client = new Client(db_credentials);
 
     try {
