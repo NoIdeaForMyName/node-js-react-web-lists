@@ -2,6 +2,7 @@ const { Client } = require('pg');
 const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
+const { db_credentials } = require('./db_credentials.js');
 
 const app = express();
 const port = 8080;
@@ -21,14 +22,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/form.js', async (req, res) => {
-    const client = new Client({
-        host: "localhost",
-        user: "postgres",
-        port: 5432,
-        password: "1234",  
-        database: "dog_shelter"
-    });
+    const client = new Client(db_credentials);
 
     try {
         await client.connect();
@@ -66,13 +60,7 @@ app.post('/form.js', async (req, res) => {
         return;
     }
 
-    const client = new Client({
-        host: "localhost",
-        user: "postgres",
-        port: 5432,
-        password: "1234",  
-        database: "dog_shelter"
-    });
+    const client = new Client(db_credentials);
 
     try {
         await client.connect();
