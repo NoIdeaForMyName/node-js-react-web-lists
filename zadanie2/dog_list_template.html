@@ -17,5 +17,14 @@
     {{TABLE_ROWS}}
   </table>
   <button onclick="window.location.href='/'">Back to Form</button>
+  <button id="downloadButton">Download list of dogs</button>
+  <a id="downloadLink" href="/download-dog-list" download="dog_list.json" style="display: none;"></a>
+
+  <script>
+    document.getElementById("downloadButton").addEventListener('click', function () {
+      document.getElementById("downloadLink").click();
+    });
+  </script>
+
 </body>
 </html>

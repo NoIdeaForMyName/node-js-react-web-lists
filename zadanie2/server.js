@@ -3,6 +3,7 @@ const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const { db_credentials } = require('./db_credentials.js');
+const path = require('path');
 
 const app = express();
 const port = 8080;
@@ -77,6 +78,34 @@ app.post('/add-dog', async (req, res) => {
     } catch (err) {
         console.error('Database error:', err);
         res.status(500).send('Internal Server Error');
+    } finally {
+        await client.end();
+    }
+});
+
+app.get('/download-dog-list', async (req, res) => {
+    const client = new Client(db_credentials);
+
+    try {
+        await client.connect();
+        const result = await client.query('SELECT * FROM dogs');
+        const dogListJson = result.rows
+        
+        const filePath = path.join(__dirname, 'dog_list.json');
+        fs.writeFileSync(filePath, JSON.stringify(dogListJson, null, 2), 'utf8');
+        res.download(filePath, 'dog_list.json', (err) => {
+            if (err) {
+                console.error('Error sending file:', err);
+                res.status(500).send('Error sending file');
+            }
+            // deleting file from server:
+            // fs.unlink(filePath, (err) => {
+            //     if (err) console.error('Error deleting file:', err);
+            // });
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error downloading dogs');
     } finally {
         await client.end();
     }
