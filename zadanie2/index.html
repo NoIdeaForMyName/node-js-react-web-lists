@@ -7,12 +7,12 @@
 </head>
 <body>
   <h1>Dog Shelter</h1>
-  <form action="/form.js" method="post">
+  <form action="/add-dog" method="post">
     <label for="dname">Dog name:</label><br>
-    <input type="text" id="dname" name="dname" placeholder="Odi" required><br>
+    <input type="text" id="dname" name="dname" placeholder="eg. Odi" required><br>
     
     <label for="birth_year">Year of birth:</label><br>
-    <input type="number" id="birth_year" name="birth_year" placeholder="2020" required><br><br>
+    <input type="number" id="birth_year" name="birth_year" placeholder="eg. 2020" required><br><br>
     
     <label>Gender:</label><br><br>
     <input type="radio" id="genderM" name="gender" value="M" checked>
@@ -23,6 +23,6 @@
     <input type="submit" value="Submit">
   </form>
   <br>
-  <button onclick="window.location.href='/form.js'">View All Dogs</button>
+  <button onclick="window.location.href='/dog-list'">View All Dogs</button>
 </body>
 </html>

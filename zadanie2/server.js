@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
     });
 });
 
+app.get('/dog-list', async (req, res) => {
     const client = new Client(db_credentials);
 
     try {
@@ -52,7 +53,7 @@ app.get('/', (req, res) => {
     }
 });
 
-app.post('/form.js', async (req, res) => {
+app.post('/add-dog', async (req, res) => {
     const { dname, birth_year, gender } = req.body;
 
     if (!dname || !birth_year || !gender) {
@@ -67,7 +68,7 @@ app.post('/form.js', async (req, res) => {
         const insertQuery = `INSERT INTO dogs (name, birth_year, gender) VALUES ($1, $2, $3)`;
         await client.query(insertQuery, [dname, birth_year, gender]);
 
-        res.redirect('/form.js');
+        res.redirect('/dog-list');
     } catch (err) {
         console.error('Database error:', err);
         res.status(500).send('Internal Server Error');
