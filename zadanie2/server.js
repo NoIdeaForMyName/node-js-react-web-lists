@@ -62,7 +62,7 @@ app.post('/add-dog', async (req, res) => {
         return;
     }
 
-    else if (isNaN(birth_year) || !['M', 'F'].includes(gender)) {
+    else if (isNaN(birth_year) || Number(birth_year) > new Date().getFullYear() || !['M', 'F'].includes(gender)) {
         res.status(400).send("Wrong values in fields");
         return;
     }

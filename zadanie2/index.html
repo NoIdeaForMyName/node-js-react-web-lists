@@ -12,8 +12,8 @@
     <input type="text" id="dname" name="dname" placeholder="eg. Odi" required><br>
     
     <label for="birth_year">Year of birth:</label><br>
-    <input type="number" id="birth_year" name="birth_year" placeholder="eg. 2020" required><br><br>
-    
+    <input type="number" id="birth_year" name="birth_year" placeholder="e.g. 2020" required><br><br>
+  
     <label>Gender:</label><br><br>
     <input type="radio" id="genderM" name="gender" value="M" checked>
     <label for="genderM">Male</label><br>
@@ -24,5 +24,10 @@
   </form>
   <br>
   <button onclick="window.location.href='/dog-list'">View All Dogs</button>
+
+  <script>
+    document.getElementById("birth_year").max = new Date().getFullYear();
+  </script>
+
 </body>
 </html>
